@@ -6,7 +6,6 @@ import uvicorn
 
 app = FastAPI()
 
-
 # 1. Use this config if you want to use the fastapi mails with the sendGrid,by using this approach the main send successfully but it will go inside the spam folder because you are not using the custom or business email.
 # import os
 # import certifi
