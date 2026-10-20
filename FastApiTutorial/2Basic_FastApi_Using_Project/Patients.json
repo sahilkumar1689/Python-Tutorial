@@ -1,0 +1,92 @@
+{
+  "P001": {
+    "name": "Alice Smith",
+    "city": "New York",
+    "age": 29,
+    "gender": "Female",
+    "height": 165,
+    "weight": 62,
+    "bmi": 22.8,
+    "verdict": "Healthy"
+  },
+  "P002": {
+    "name": "Bob Johnson",
+    "city": "Los Angeles",
+    "age": 34,
+    "gender": "Male",
+    "height": 178,
+    "weight": 85,
+    "bmi": 26.8,
+    "verdict": "Overweight"
+  },
+  "P003": {
+    "name": "Carol Lee",
+    "city": "Chicago",
+    "age": 42,
+    "gender": "Female",
+    "height": 160,
+    "weight": 70,
+    "bmi": 27.3,
+    "verdict": "Overweight"
+  },
+  "P004": {
+    "name": "David Kim",
+    "city": "Houston",
+    "age": 25,
+    "gender": "Male",
+    "height": 172,
+    "weight": 68,
+    "bmi": 23.0,
+    "verdict": "Healthy"
+  },
+  "P005": {
+    "name": "asdlfkdsl",
+    "city": "dflslkds",
+    "age": 10,
+    "gender": "Male",
+    "height": 150.0,
+    "weight": 60.0,
+    "bmi": 0.0026666666666666666,
+    "verdict": "Underweight"
+  },
+  "P007": {
+    "name": "Grace Miller",
+    "city": "San Antonio",
+    "age": 38,
+    "gender": "Female",
+    "height": 155,
+    "weight": 60,
+    "bmi": 24.9,
+    "verdict": "Healthy"
+  },
+  "P008": {
+    "name": "Henry Davis",
+    "city": "San Diego",
+    "age": 22,
+    "gender": "Male",
+    "height": 175,
+    "weight": 72,
+    "bmi": 23.5,
+    "verdict": "Healthy"
+  },
+  "P009": {
+    "name": "Ivy Martinez",
+    "city": "Dallas",
+    "age": 27,
+    "gender": "Female",
+    "height": 162,
+    "weight": 54,
+    "bmi": 20.6,
+    "verdict": "Healthy"
+  },
+  "P010": {
+    "name": "Jack Anderson",
+    "city": "San Jose",
+    "age": 36,
+    "gender": "Male",
+    "height": 170,
+    "weight": 80,
+    "bmi": 27.7,
+    "verdict": "Overweight"
+  }
+}

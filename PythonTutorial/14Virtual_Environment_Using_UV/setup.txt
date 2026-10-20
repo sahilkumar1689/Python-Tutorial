@@ -1,0 +1,24 @@
+1. UV is a lightweight and very fast python package in order to works with running the python scripts , installing the dependencies, updating the python version , use different python version for the specific project,create virtual environments.
+
+Some of the basic commands of uv for virtual environment:
+1. uv init folder_name = It is used to create an automatic virtual environment in the give folder name.After that you just need to go inside that folder and start creating the project.It create the python-version file,main.py file,package.toml file similar to the package.json,readme.md,uv.lock file similar to the package-lock.json.
+2. After going inside that created folder, you can simple run "uv run main.py" in order to run the project in virtual environment.
+3. uv add package_name = Used to install any packages.
+4. uv remove package_name = used to delete any package.
+5. uv add -r requirements.txt -c constraints.txt = This commands is used to migrate from the requirements.txt -> uv environment.
+6. uv lock --upgrade-package package_name = It is used to upgrade the specific package.
+7. uv sync = Used to syncronize the .toml and the .venv environment.
+8. uv lock = Used to generate the lock file.
+9. uv self update = To update the uv version.
+10. uv build = To create a build.
+11. uv = This simple command list all the uv commands.
+
+Some commands for the dependencies in scripts files:
+1. uv add --script file_name 'package1' 'package2' = It is used to run a script file with dependencies.
+2. uv run file_name = If you have simple normal python scritp file simple run like this.
+3. uv run --python version_number file_name = Used to run that script in a specific python version.
+
+Commands for jupyter notebook:
+1. uv init 
+2. uv add ipykernel
+3. uv run python -m ipykernel install --user --name=your_kernel_name --display-name "Python (your_kernel_name)"

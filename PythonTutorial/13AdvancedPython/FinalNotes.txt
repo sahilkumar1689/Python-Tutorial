@@ -1,0 +1,156 @@
+✅ 1. ThreadPoolExecutor (individual vs context manager)
+✔ Use ThreadPoolExecutor as a context manager
+
+→ When the executor is short-lived and should shut down after the block (scripts, one-time tasks).
+
+✔ Use ThreadPoolExecutor as a long-living instance
+
+→ When running background or server jobs where the executor must stay alive (web servers, Azure Functions, background workers).
+
+✅ 2. When to use ThreadPoolExecutor vs asyncio
+✔ Use ThreadPoolExecutor
+
+→ For blocking synchronous I/O (requests, normal file I/O, CPU-light functions from non-async libraries).
+
+✔ Use asyncio
+
+→ For truly async functions (aiohttp, aioredis, async DB drivers, async file I/O, async workflows).
+
+✅ 3. When to use create_task, to_thread, gather, and coroutines
+✔ Use asyncio.gather(coros...) with plain coroutines
+
+→ When all functions are async, and you want to start them and wait for all of them (parallel async I/O).
+(Your download logic works exactly like this.)
+
+✔ Use asyncio.create_task()
+
+→ When you need to run async tasks in the background without waiting immediately.
+
+✔ Use asyncio.to_thread()
+
+→ When you must run a blocking synchronous function inside an async workflow (convert sync → async).
+
+✔ Use asyncio.gather(asyncio.to_thread(func), ...)
+
+→ When mixing async code and blocking code that must run concurrently.
+
+✔ Use asyncio.gather(create_task(...), create_task(...))
+
+→ When you want multiple background async tasks and then wait for all.
+
+✔ Can gather be used with anything?
+
+→ gather accepts coroutines OR tasks; it will convert coroutines → tasks automatically.
+
+🎯 One-line rules (summary)
+
+gather + coroutines → for parallel async I/O (default, safest).
+
+create_task + gather → when starting async work immediately and waiting later.
+
+to_thread + gather → when running blocking sync functions inside async code.
+
+create_task + to_thread + gather → for complex async workflows mixing sync + async.
+
+gather works with both coroutines and tasks — not limited.
+
+✅ 4. aiohttp vs aiofiles
+✔ Use aiohttp
+
+→ For async HTTP requests, downloading files, making APIs concurrently (network I/O).
+
+✔ Use aiofiles
+
+→ For async file read/write without blocking the event loop (file I/O inside async workflows).
+
+
+
+$$$$$ Final More simpeler notes: $$$$$
+
+Notes = 
+
+1. Always keep in mind: if you have a synchronous (blocking) task → use threads.
+   Now here further classification is:
+
+   → If we have a short-running synchronous task → use ThreadPoolExecutor with context manager.
+   → If we have a long-running synchronous task (needs to stay alive across whole app/server) 
+        → use ThreadPoolExecutor as a global instance.
+   → If we have a synchronous function inside an async flow → use asyncio.to_thread().
+        (This converts sync → async without blocking the event loop)
+
+2. After that we have pure async tasks → we always use the asyncio library.
+   Now further classification of how to run async functions:
+
+   → If we have multiple async functions and we want to execute them 
+       AND wait for all to finish → use asyncio.gather() with coroutine objects.
+       (gather automatically turns coroutines into Tasks)
+
+   → If we have async functions that we want to execute 
+       BUT do NOT want to wait for them immediately → use asyncio.create_task().
+       (this runs them in background “fire-and-forget” style)
+
+3. Where to use gather with create_task:
+
+   → Use gather() with create_task() when you want to start async tasks immediately,
+       let them run in background, do something else, 
+       and later wait for all results together using gather().
+
+   Example pattern:
+       t1 = asyncio.create_task(func1())
+       t2 = asyncio.create_task(func2())
+       ... do other work ...
+       results = await asyncio.gather(t1, t2)
+4. Where to use gather with to_thread:
+
+   → Use gather() with to_thread() when you have multiple blocking synchronous functions
+       but you are inside an async flow and want to run all blocking functions concurrently.
+
+   Example pattern:
+       results = await asyncio.gather(
+           asyncio.to_thread(sync_func1),
+           asyncio.to_thread(sync_func2),
+           asyncio.to_thread(sync_func3),
+       )
+5. Where to use gather with BOTH create_task and to_thread:
+
+   → Use this when your workflow mixes:
+         - async functions 
+         - blocking synchronous functions 
+         - background async tasks
+
+       This is for complex systems where some tasks are async,
+       some are synchronous blocking, and some should run in background.
+
+   Example pattern:
+       t1 = asyncio.create_task(async_func1())     # background async
+       t2 = asyncio.create_task(async_func2())     # background async
+
+       results = await asyncio.gather(
+           t1,
+           t2,
+           asyncio.to_thread(sync_func1),
+           asyncio.to_thread(sync_func2),
+       )
+       
+       (all run concurrently → async + threads)
+6. After that we use aiohttp for the asynchronous api calls typically used for the multiple file downloading operations.
+7. After that we use aiofiles for the asynchronous file read and write operations used for the large file opearations.
+
+
+$$$$$ One to one mapping in python to node.js: $$$$$
+
+1. os,pathlib -> os,path
+2. shutil,tempfiles -> fs module
+3. Context manager -> try,catch block.Built in clean up.
+4. aiofile -> fs.promises
+5. aiohttp -> axios
+6. asyncio -> Built in sync/async I/O handling using the micro and macro task queue.
+7. ThreadPoolExecutor -> worker_threads libraries
+e.g. :
+const { Worker } = require('worker_threads');
+new Worker('./worker.js');
+8. ProcessPoolExecutor -> child_process libraries.
+e.g.:
+const { fork } = require('child_process');
+fork('worker.js');
+

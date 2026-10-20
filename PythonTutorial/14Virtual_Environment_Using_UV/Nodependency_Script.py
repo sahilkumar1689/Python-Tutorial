@@ -1,0 +1,4 @@
+
+stri = "Hello"
+
+print(stri);

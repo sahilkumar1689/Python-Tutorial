@@ -1,0 +1,90 @@
+1. For MVC like format:
+
+app/
+│
+├── main.py                 # Entry point (FastAPI app instance, routes include here)
+│
+├── core/                   # Core configuration
+│   ├── config.py           # Settings (env, app config)
+│   ├── database.py         # DB connection (SQLAlchemy engine, SessionLocal, Base)
+│   └── __init__.py
+│
+├── models/                 # M = Models (SQLAlchemy ORM)
+│   ├── user.py
+│   ├── post.py
+│   └── __init__.py
+│
+├── schemas/                # V = "View" layer (Pydantic request/response models)
+│   ├── user.py
+│   ├── post.py
+│   └── __init__.py
+│
+├── controllers/            # C = Controllers (route handlers, business flow)
+│   ├── user_controller.py
+│   ├── post_controller.py
+│   └── __init__.py
+│
+├── services/               # S = Services (business logic, CRUD ops)
+│   ├── user_service.py
+│   ├── post_service.py
+│   └── __init__.py
+│
+├── api/                    # API Router (organize endpoints version-wise)
+│   ├── v1/
+│   │   ├── routes.py       # Combine all controllers into router
+│   │   └── __init__.py
+│   └── __init__.py
+│
+└── __init__.py
+
+
+2. Another professional structure:
+
+app/
+│── main.py                  # Entry point (FastAPI instance, middleware, startup events)
+│── core/
+│   ├── config.py             # Settings (Pydantic BaseSettings, env vars)
+│   ├── security.py           # (Optional) JWT, OAuth2 helpers
+│   └── __init__.py
+│
+│── db/
+│   ├── base.py               # Base = declarative_base(), import all models here
+│   ├── session.py            # Database session, engine
+│   └── __init__.py
+│
+│── models/                   # Models (M in MVC)
+│   ├── user.py               # SQLAlchemy ORM classes
+│   ├── post.py
+│   └── __init__.py
+│
+│── schemas/                  # Pydantic schemas (like Views = request/response layer)
+│   ├── user.py
+│   ├── post.py
+│   └── __init__.py
+│
+│── crud/                     # Service/Repository layer (business logic, DB queries)
+│   ├── user.py
+│   ├── post.py
+│   └── __init__.py
+│
+│── api/                      # Controllers (C in MVC)
+│   ├── v1/
+│   │   ├── endpoints/
+│   │   │   ├── user.py       # @router.get(), @router.post()
+│   │   │   ├── post.py
+│   │   │   └── __init__.py
+│   │   └── __init__.py
+│   └── __init__.py
+│
+│── tests/                    # Unit & integration tests
+│   ├── test_users.py
+│   ├── test_posts.py
+│   └── __init__.py
+│
+│── __init__.py
+
+Note = 1. You can pick any one of the folder structure for creating your fastapi application both are professional approaches.
+2. You can also modify and add other folder like helper or utils folder. 
+3. It does not means that you need to follow this folder structure strictly you can modify according to you project requirements.
+4. If you are working in the modern python then you can skip creating the "__init__.py" file.But it is proffesioanl approaches atleast create it empty "__init__.py" file in your all folders for future use.Like restricting the critical functions exports.
+5.Use structure one for large project and second for small projects.Recommendation go with structure one and try to learn the flow, the folder structure varies from project to project and company to company but flow remains same.

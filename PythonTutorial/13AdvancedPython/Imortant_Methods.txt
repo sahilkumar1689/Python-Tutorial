@@ -1,0 +1,34 @@
+1. coroutine = In python every async function return an coroutine object.which represent the non-blocking unit of task.In simple terms,coroutine is an async function that can be suspend or resume in order to acheive the concurrency.
+A coroutine function does not do anything unitl we call it using the "await" keyword.
+
+2. Task = Whenever the coroutine function call using the "await" keyword it will becomes an task.So task is nothing but a wrapper , that scheduled coroutine on the event loop in order to compplete their execution independently to the other task.
+
+3. Future = A Future is a promise-like container that will eventually hold the result (or exception) of an asynchronous operation.It acts as a placeholder for the eventual completion of the asynchronous task, used by both threads and asyncio.
+
+Most improtant method of the popular library:
+
+1. ThreadPoolExecutor → run blocking I/O in threads
+   - submit() → run func in thread
+   - map() → parallel map
+   - shutdown() → stop threads
+
+2. ProcessPoolExecutor → run CPU-heavy tasks in processes
+   - submit() → CPU parallel
+   - map() → CPU parallel map
+
+3. asyncio → async I/O
+   - gather() → run async functions concurrently + wait
+   - create_task() → background async task
+   - to_thread() → run sync inside async
+   - sleep() → non-blocking sleep
+   - run() → start event loop
+
+4. aiofiles → async file I/O
+   - aiofiles.open() → async open
+   - read(), write() → async read/write
+
+5. aiohttp → async HTTP
+   - ClientSession() → session
+   - get(), post() → async requests
+   - resp.text(), resp.json(), resp.read() → read response
+
