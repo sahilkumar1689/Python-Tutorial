@@ -2,6 +2,9 @@
 # It is well known for its clear and readable syntax.It is popular becuase of its cross-platform compatibility, open source, extensive standard library, and large community support.
 
 # Python is a multi-threading programming language but it allow only one thread to execute at a time because of GIL(Global Interpreter Lock).Even though it support multi-threading but it is not suitable for CPU intensive tasks because of GIL.But it is suitable for I/O intensive tasks like web scraping,networking etc.
+
+# In simple words, python is a multithreading programming language but it depends you want to use it for which task like for I/O bound task it support multithreading but for the cpu bound task it does not because of cpython which is nothing but the default implimentation of python used the GLI lock that ensure only one thread is uses at a time for CPU bound task.  
+
 # For example if we have a program which is downloading multiple files from the internet then it is suitable to use multi-threading because while one thread is waiting for the response from the server, other threads can continue downloading other files.
 # But if you want to do the cpu heavy task then you can use multi-processing module which create multiple processes and each process have its own python interpreter and memory space.So it can bypass the GIL limitation and utilize the multiple cores of the CPU.
 

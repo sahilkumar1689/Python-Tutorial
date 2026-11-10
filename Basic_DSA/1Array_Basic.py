@@ -12,4 +12,10 @@
 # 3. Using list.reverse() = O(n) = in-place
 # 4. Using Reversed(list) class = O(1) because it yield the values and return an iterator.Although while consuming O(n).
 
-# 3. 
+
+# 3. Check if an array is sorted:
+# Approach:
+# 1. While iterating Keep checking the next element , if any of them is smaller not sorted. 
+
+
+# 4. Rotate an array by k positions to right side:
