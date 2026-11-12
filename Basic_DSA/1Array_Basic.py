@@ -1,3 +1,35 @@
+######## Basic Template to take input ############
+
+# def get_integer(prompt):
+#     while True:
+#         try:
+#             return int(input(prompt))
+#         except ValueError:
+#             print("Invalid input. Please enter a valid integer.")
+
+
+# def get_input():
+#     arr_len = get_integer("Enter the array length: ")
+
+#     if arr_len < 0:
+#         print("Array length cannot be negative.")
+#         return get_input()
+
+#     user_arr = []
+
+#     for i in range(arr_len):
+#         value = get_integer(f"Enter {i + 1} value: ")
+#         user_arr.append(value)
+
+#     print("Entered array:", user_arr)
+
+#     k = get_integer("Enter the value of right shift: ")
+#     print("Right shift:", k)
+
+#     return user_arr, k
+
+
+
 # 1. Find the maximum and minimum elements:
 # Approaches:
 # 1. sort then fetch first and last element = O(nlogn)
