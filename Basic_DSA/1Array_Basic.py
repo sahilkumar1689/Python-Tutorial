@@ -19,3 +19,7 @@
 
 
 # 4. Rotate an array by k positions to right side:
+# 4. Rotate an array by k positions:
+# Approaches:
+# 1. Remove the last element of the array one by one and insert it at the beginning, repeating this process k times. This effectively performs a right rotation by k positions.use insert and pop methods.
+
